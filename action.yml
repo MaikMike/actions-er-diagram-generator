@@ -1,0 +1,23 @@
+name: ER Diagram Generator
+description: Generate an ER diagram using a PostgreSQL database URL.
+author: MaikMike
+inputs:
+  db_url:
+    description: The database connection URL.
+    required: true
+  output_file:
+    description: The name of the output file for the ER diagram.
+    required: true
+    default: er_diagram.png
+outputs:
+  output_file:
+    description: Path to the generated ER diagram file.
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    DB_URL: ${{ inputs.db_url }}
+    OUTPUT_FILE: ${{ inputs.output_file }}
+branding:
+  icon: "database"
+  color: "blue"
